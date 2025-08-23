@@ -6,12 +6,12 @@ import { fadeInUp } from '../../utils/animations'
 
 // Sample gallery data
 const galleryItems = [
-  { id: 1, title: "Student Films", image: "/sample-movie-1.jpg", count: "124" },
-  { id: 2, title: "Documentaries", image: "/sample-movie-2.jpg", count: "87" },
-  { id: 3, title: "Short Films", image: "/sample-movie-3.jpg", count: "156" },
-  { id: 4, title: "Experimental", image: "/sample-movie-1.jpg", count: "64" },
-  { id: 5, title: "Animation", image: "/sample-movie-2.jpg", count: "92" },
-  { id: 6, title: "Horror", image: "/sample-movie-3.jpg", count: "78" },
+  { id: 1, title: "Student Films", image: "/tenet.jpeg", count: "124" },
+  { id: 2, title: "Documentaries", image: "/working man.jpeg", count: "87" },
+  { id: 3, title: "Short Films", image: "/evil dead.jpeg", count: "156" },
+  { id: 4, title: "Experimental", image: "/tenet.jpeg", count: "64" },
+  { id: 5, title: "Animation", image: "/evil dead.jpeg", count: "92" },
+  { id: 6, title: "Horror", image: "/tenet.jpeg", count: "78" },
 ]
 
 const Gallery = () => {
