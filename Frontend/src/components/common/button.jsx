@@ -1,3 +1,5 @@
+import React from "react";
+
 const Button = ({ children, variant = 'primary', className = '', ...props }) => {
   const baseClasses = 'px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1'
   

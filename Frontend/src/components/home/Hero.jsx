@@ -1,7 +1,8 @@
+import React from "react";
 import { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-import Button from '../common/Button'
-import { useAnimation } from '../../hooks/useAnimation'
+import Button from '../common/button'
+import useAnimation from '../hooks/UseAnimation.jsx';
 
 const Hero = () => {
   const titleRef = useRef(null)

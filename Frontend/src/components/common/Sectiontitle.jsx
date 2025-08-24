@@ -1,7 +1,6 @@
-import { useRef, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { useAnimation } from '../../hooks/useAnimation'
-
+import React, { useRef, useEffect } from "react";
+import { gsap } from 'gsap';
+import useAnimation from '../hooks/UseAnimation.jsx';
 const SectionTitle = ({ title, subtitle, className = '' }) => {
   const titleRef = useRef(null)
   const subtitleRef = useRef(null)

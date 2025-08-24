@@ -1,17 +1,21 @@
-import { useRef, useState } from 'react'
-import Card from '../common/Card'
-import SectionTitle from '../common/SectionTitle'
-import { useAnimation } from '../../hooks/useAnimation'
-import { fadeInUp } from '../../utils/animations'
+import React, { useRef, useState } from "react";
+import Card from '../common/card.jsx';
+import SectionTitle from '../common/Sectiontitle.jsx';
+import useAnimation, { fadeInUp } from '../hooks/UseAnimation.jsx';
+
+// Import images
+import superman from '../../assets/image/superman.webp';
+import skyfall from '../../assets/image/sky fall.webp';
+import twofast from '../../assets/image/2fast.webp';
 
 // Sample gallery data
 const galleryItems = [
-  { id: 1, title: "Student Films", image: "/tenet.jpeg", count: "124" },
-  { id: 2, title: "Documentaries", image: "/working man.jpeg", count: "87" },
-  { id: 3, title: "Short Films", image: "/evil dead.jpeg", count: "156" },
-  { id: 4, title: "Experimental", image: "/tenet.jpeg", count: "64" },
-  { id: 5, title: "Animation", image: "/evil dead.jpeg", count: "92" },
-  { id: 6, title: "Horror", image: "/tenet.jpeg", count: "78" },
+  { id: 1, title: "Student Films", image: superman, count: "124" },
+  { id: 2, title: "Documentaries", image: skyfall, count: "87" },
+  { id: 3, title: "Short Films", image: twofast, count: "156" },
+  { id: 4, title: "Experimental", image: skyfall, count: "64" }, 
+  { id: 5, title: "Animation", image: twofast, count: "92" },
+  { id: 6, title: "Horror", image: superman, count: "78" },        
 ]
 
 const Gallery = () => {
