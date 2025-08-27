@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
-import Card from '../common/card.jsx';
-import SectionTitle from '../common/Sectiontitle.jsx';
-import useAnimation, { fadeInUp } from '../hooks/UseAnimation.jsx';
+import React, { useRef, useState } from "react";
+import Card from '../common/card';
+import SectionTitle from '../common/Sectiontitle';
+import { useAnimation } from '../hooks/UseAnimation';
+import { gsap } from 'gsap';
 
 // Import images
 import tenet from '../../assets/image/2fast.webp';
@@ -12,7 +13,7 @@ import evilDead from '../../assets/image/superman.webp';
 const featuredMovies = [
   {
     id: 1,
-    title: "The Last Sunset",
+    title: "THE LAST SUNSET",
     creator: "Emma Richardson",
     category: "Drama",
     duration: "1h 28m",
@@ -21,7 +22,7 @@ const featuredMovies = [
   },
   {
     id: 2,
-    title: "Urban Echoes",
+    title: "URBAN ECHOES",
     creator: "Marcus Chen",
     category: "Documentary",
     duration: "45m",
@@ -30,7 +31,7 @@ const featuredMovies = [
   },
   {
     id: 3,
-    title: "Silent Whispers",
+    title: "SILENT WHISPERS",
     creator: "Sophia Martinez",
     category: "Thriller",
     duration: "1h 15m",
@@ -42,39 +43,104 @@ const featuredMovies = [
 const Featured = () => {
   const [scope] = useAnimation()
   const sectionRef = useRef(null)
+  const [activeMovie, setActiveMovie] = useState(null)
+
+  const handleMouseEnter = (index) => {
+    setActiveMovie(index)
+    gsap.to(`.movie-${index}`, {
+      scale: 1.05,
+      zIndex: 10,
+      duration: 0.3,
+      ease: "power2.out"
+    })
+    
+    gsap.to(`.movie-content-${index}`, {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      ease: "power2.out"
+    })
+  }
+
+  const handleMouseLeave = (index) => {
+    setActiveMovie(null)
+    gsap.to(`.movie-${index}`, {
+      scale: 1,
+      zIndex: 1,
+      duration: 0.3,
+      ease: "power2.out"
+    })
+    
+    gsap.to(`.movie-content-${index}`, {
+      opacity: 0,
+      y: 20,
+      duration: 0.3,
+      ease: "power2.out"
+    })
+  }
 
   return (
-    <section ref={sectionRef} className="py-20 bg-white">
-      <div className="container mx-auto px-6">
+    <section ref={sectionRef} className="py-20 bg-dark-200 relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern bg-cover bg-center"></div>
+      </div>
+      
+      <div className="container mx-auto px-6 relative z-10">
         <SectionTitle 
-          title="Featured Films" 
+          title="FEATURED FILMS" 
           subtitle="Handpicked selections from our curators" 
         />
+        
         <div 
           ref={scope}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000"
         >
           {featuredMovies.map((movie, index) => (
-            <Card 
+            <div 
               key={movie.id}
-              className="relative overflow-hidden group h-96"
-              {...fadeInUp()}
+              className={`movie-${index} relative h-96 transform transition-all duration-500 ${activeMovie !== null && activeMovie !== index ? 'opacity-70' : 'opacity-100'}`}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={() => handleMouseLeave(index)}
             >
-              <img 
-                src={movie.image} 
-                alt={movie.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h3 className="text-xl font-semibold text-white mb-1">{movie.title}</h3>
-                <p className="text-muted-300">{movie.category} • {movie.duration}</p>
-                <p className="text-muted-400 text-sm">By {movie.creator}</p>
-                <div className="mt-2 flex items-center">
-                  <span className="text-yellow-400 mr-2">★</span>
-                  <span className="text-white font-medium">{movie.rating}</span>
+              <Card glow={true} className="h-full">
+                <div className="relative h-full overflow-hidden">
+                  <img 
+                    src={movie.image} 
+                    alt={movie.title}
+                    className="w-full h-full object-cover transition-transform duration-700"
+                  />
+                  
+                  <div className={`movie-content-${index} absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 transform translate-y-5 flex flex-col justify-end p-6`}>
+                    <h3 className="text-2xl font-bold text-white mb-2">{movie.title}</h3>
+                    <p className="text-electric-300 mb-2">{movie.category} • {movie.duration}</p>
+                    <p className="text-electric-200 text-sm mb-3">By {movie.creator}</p>
+                    
+                    <div className="flex items-center mb-4">
+                      <div className="relative">
+                        <div className="w-full h-2 bg-electric-800 rounded-full"></div>
+                        <div 
+                          className="absolute top-0 left-0 h-2 bg-gradient-to-r from-electric-500 to-electric-700 rounded-full" 
+                          style={{ width: `${(movie.rating / 5) * 100}%` }}
+                        ></div>
+                      </div>
+                      <span className="ml-2 text-electric-400 font-bold">{movie.rating}</span>
+                    </div>
+                    
+                    <div className="flex space-x-3">
+                      <button className="flex-1 bg-electric-600 hover:bg-electric-500 text-white py-2 rounded-lg transition-colors">
+                        Watch
+                      </button>
+                      <button className="w-10 h-10 flex items-center justify-center bg-dark-300 hover:bg-dark-400 rounded-lg transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
       </div>

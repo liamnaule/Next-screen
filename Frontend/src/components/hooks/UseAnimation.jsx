@@ -61,9 +61,7 @@ export const swipeGallery = (container) => {
   })
 }
 
-const useAnimation = () => {
-  const scope = useRef(null);
-  return [scope];
-};
-
-export default useAnimation;
+export const useAnimation = () => {
+  const scope = useRef(null)
+  return [scope]
+}
