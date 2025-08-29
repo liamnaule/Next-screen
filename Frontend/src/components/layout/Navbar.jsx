@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Film, 
   User, 
   Search, 
   Upload, 
@@ -19,16 +18,24 @@ import {
 } from 'lucide-react';
 import Button from '../common/Button';
 import DarkModeToggle from '../common/DarkModeToggle';
+import Logo from '../common/Logo';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      // Calculate scroll progress
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -52,7 +59,7 @@ const Navbar = () => {
     {
       label: 'Categories',
       href: '#categories',
-      icon: Film,
+      icon: TrendingUp,
       dropdown: [
         { label: 'Drama', href: '#drama' },
         { label: 'Documentary', href: '#documentary' },
@@ -116,22 +123,13 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            {/* Logo - Updated with new typography */}
             <motion.div
-              className="flex items-center space-x-3"
+              className="flex items-center"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
-              <motion.div
-                className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-primary to-purple-600 rounded-xl"
-                whileHover={{ rotateY: 180 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Film className="w-5 h-5 text-white" />
-              </motion.div>
-              <span className="font-bold text-xl gradient-text bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
-                NextScreen
-              </span>
+              <Logo size="lg" />
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -145,7 +143,7 @@ const Navbar = () => {
                 >
                   <motion.a
                     href={item.href}
-                    className="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:text-primary group"
+                    className="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:text-primary group nav-item-hover"
                     whileHover={{ y: -2 }}
                   >
                     <item.icon className="w-4 h-4 mr-2" />
@@ -278,11 +276,20 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Scroll Progress Indicator */}
+        <motion.div
+          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary to-purple-600"
+          style={{ width: `${scrollProgress}%` }}
+          initial={{ width: 0 }}
+          animate={{ width: `${scrollProgress}%` }}
+          transition={{ duration: 0.3 }}
+        />
+
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border/20"
+              className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border/20 mobile-menu-backdrop"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}

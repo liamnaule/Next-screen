@@ -1,20 +1,16 @@
 import { motion } from "framer-motion";
 import { Github, Twitter, Instagram, Youtube } from "lucide-react";
 import Button from '../common/Button';
+import Logo from '../common/Logo';
 
 export default function Footer() {
   return (
     <footer className="bg-muted/30 border-t">
       <div className="container px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
+          {/* Brand - Updated with new logo */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-                <span className="text-primary-foreground font-bold">NS</span>
-              </div>
-              <span className="font-bold text-xl">NextScreen</span>
-            </div>
+            <Logo size="xl" />
             <p className="text-sm text-muted-foreground">
               Empowering the next generation of filmmakers to share their stories with the world.
             </p>
