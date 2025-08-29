@@ -5,7 +5,7 @@ import { Play, Plus, Info, Star } from "lucide-react";
 export default function Hero() {
   return (
     <motion.section 
-      className="relative h-screen overflow-hidden"
+      className="relative h-screen overflow-hidden -mt-16 pt-16"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -25,9 +25,9 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex items-center">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-2xl">
+      <div className="relative z-10 h-full flex items-center justify-center">
+        <div className="container mx-auto px-6 lg:px-12 text-center">
+          <div className="max-w-4xl mx-auto">
             {/* Category Badge */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -46,7 +46,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white"
+              className="text-5xl lg:text-7xl font-bold mb-6 leading-tight text-white"
             >
               The Midnight
               <span className="block gradient-text-animate">Chronicles</span>
@@ -57,7 +57,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-xl text-gray-300 mb-8 leading-relaxed max-w-lg"
+              className="text-xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto"
             >
               A groundbreaking indie film that explores the depths of human consciousness through stunning visuals and compelling storytelling.
             </motion.p>
@@ -67,7 +67,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="flex items-center space-x-6 mb-8 text-sm text-gray-300"
+              className="flex items-center justify-center space-x-6 mb-8 text-sm text-gray-300 flex-wrap"
             >
               <div className="flex items-center space-x-2">
                 <Star className="w-4 h-4 text-yellow-400" />
@@ -83,7 +83,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 justify-center"
             >
               <Button 
                 size="lg"
@@ -116,7 +116,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent dark:from-gray-900"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent dark:from-black"></div>
     </motion.section>
   );
 }

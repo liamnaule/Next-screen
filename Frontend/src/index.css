@@ -642,6 +642,50 @@ a:focus-visible {
   color: #ffffff;
 }
 
+/* Fix for navbar and hero spacing */
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.main-content {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.hero-section {
+  margin-top: 0;
+  padding-top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Ensure content starts right after navbar */
+.content-after-navbar {
+  padding-top: 4rem;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* Account for fixed navbar */
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .content-after-navbar {
+    padding-top: 3.5rem;
+  }
+  
+  html {
+    scroll-padding-top: 3.5rem;
+  }
+}
+
 /* Animation delays for staggered animations */
 .delay-100 {
   animation-delay: 100ms;
@@ -704,33 +748,4 @@ a:focus-visible {
 
 /* Custom prefers-reduced-motion utilities */
 @media (prefers-reduced-motion: reduce) {
-  .motion-reduce\:transform-none {
-    transform: none !important;
-  }
-  
-  .motion-reduce\:animate-none {
-    animation: none !important;
-  }
-}
-
-/* Custom prefers-contrast utilities */
-@media (prefers-contrast: high) {
-  .contrast-high\:border-2 {
-    border-width: 2px;
-  }
-  
-  .contrast-high\:text-bold {
-    font-weight: 700;
-  }
-}
-
-/* Custom forced colors mode support */
-@media (forced-colors: active) {
-  .forced-colors\:border {
-    border: 1px solid currentColor;
-  }
-  
-  .forced-colors\:bg-transparent {
-    background-color: transparent;
-  }
 }
