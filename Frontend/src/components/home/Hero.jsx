@@ -35,7 +35,7 @@ export default function Hero() {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="mb-6"
             >
-              <span className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm font-medium">
+              <span className="inline-flex items-center px-4 py-2 rounded-full glass-card text-sm font-medium text-white">
                 <Star className="w-4 h-4 mr-2 text-yellow-400" />
                 Featured Film
               </span>
@@ -49,7 +49,7 @@ export default function Hero() {
               className="text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white"
             >
               The Midnight
-              <span className="block gradient-text">Chronicles</span>
+              <span className="block gradient-text-animate">Chronicles</span>
             </motion.h1>
 
             {/* Description */}
@@ -87,7 +87,7 @@ export default function Hero() {
             >
               <Button 
                 size="lg"
-                className="bg-white text-black hover:bg-gray-200"
+                className="bg-white text-black hover:bg-gray-200 dark:bg-white dark:text-black"
               >
                 <Play className="w-5 h-5 mr-2" />
                 Watch Now
@@ -96,7 +96,7 @@ export default function Hero() {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10"
+                className="border-white/30 text-white hover:bg-white/10 dark:border-gray-600 dark:text-white dark:hover:bg-gray-800"
               >
                 <Plus className="w-5 h-5 mr-2" />
                 My List
@@ -105,7 +105,7 @@ export default function Hero() {
               <Button 
                 variant="ghost" 
                 size="lg"
-                className="text-white hover:bg-white/10"
+                className="text-white hover:bg-white/10 dark:text-gray-300 dark:hover:bg-gray-800"
               >
                 <Info className="w-5 h-5 mr-2" />
                 More Info
@@ -116,7 +116,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent dark:from-gray-900"></div>
     </motion.section>
   );
 }
